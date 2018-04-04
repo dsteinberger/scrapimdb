@@ -21,8 +21,6 @@ class ImdbSpider(object):
                                                       search_type_path,
                                                       self.title)
         self.link_detail = self._scrap_link_detail()
-        if not self.link_detail:
-            pass  # TODO error mess
         page = requests.get(self.link_detail)
         self.tree = html.fromstring(page.content)
 
@@ -37,7 +35,7 @@ class ImdbSpider(object):
                 "//td[@class='result_text']/a")[0].items()[0][1]
             return u"{}{}".format(self.domain, detail_path)
         except IndexError:
-            pass
+            raise Exception("No details found from: {}".format(self.title))
 
     def get_rating(self):
         try:
