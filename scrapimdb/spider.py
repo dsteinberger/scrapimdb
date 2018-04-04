@@ -21,6 +21,8 @@ class ImdbSpider(object):
                                                       search_type_path,
                                                       self.title)
         self.link_detail = self._scrap_link_detail()
+        if not self.link_detail:
+            raise Exception()
         page = requests.get(self.link_detail)
         self.tree = html.fromstring(page.content)
 
