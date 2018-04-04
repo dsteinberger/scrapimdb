@@ -46,7 +46,7 @@ class ImdbSpider(object):
         except IndexError:
             pass
 
-    def get_title(self):
+    def get_original_title(self):
         # Retrieve the original title
         try:
             return self.tree.xpath(

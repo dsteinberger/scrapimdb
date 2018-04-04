@@ -13,7 +13,7 @@ def test_imdb_rating(spider):
 
 
 def test_imdb_title(spider):
-    assert "The Terminator" == spider.get_title()
+    assert "The Terminator" == spider.get_original_title()
 
 
 def test_imdb_year(spider):

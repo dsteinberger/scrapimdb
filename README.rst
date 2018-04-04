@@ -39,7 +39,7 @@ Usages
     im = ImdbSpider('terminator')
 
     im.get_rating()
-    im.get_title()
+    im.get_original_title()
     im.get_year()
 
 
