@@ -18,9 +18,6 @@ scrapimdb
 Scrap Imdb website to retrieve detail informations from movies or tvshows
 
 
-* Free software: MIT license
-* Documentation: https://scrapimdb.readthedocs.io.
-
 Install
 -------
 
