@@ -44,7 +44,8 @@ class ImdbSpider(object):
             return self.tree.xpath(
                 "//span[@itemprop='ratingValue']")[0].text.strip()
         except IndexError:
-            pass
+            raise Exception(
+                "No rating found from: {}".format(self.title))
 
     def get_original_title(self):
         # Retrieve the original title
@@ -52,11 +53,13 @@ class ImdbSpider(object):
             return self.tree.xpath(
                 "//div[@class='originalTitle']")[0].text.strip()
         except IndexError:
-            pass
+            raise Exception(
+                "No original title found from: {}".format(self.title))
 
     def get_year(self):
         # Retrieve the original title
         try:
             return self.tree.xpath("//span[@id='titleYear']/a")[0].text.strip()
         except IndexError:
-            pass
+            raise Exception(
+                "No year found from: {}".format(self.title))
