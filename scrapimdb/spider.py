@@ -41,16 +41,16 @@ class ImdbSpider(object):
 
     def get_rating(self):
         try:
-            return self.tree.xpath("//span[@itemprop='ratingValue']")[
-                0].text.strip()
+            return self.tree.xpath(
+                "//span[@itemprop='ratingValue']")[0].text.strip()
         except IndexError:
             pass
 
     def get_title(self):
         # Retrieve the original title
         try:
-            return self.tree.xpath("//div[@class='originalTitle']")[
-                0].text.strip()
+            return self.tree.xpath(
+                "//div[@class='originalTitle']")[0].text.strip()
         except IndexError:
             pass
 

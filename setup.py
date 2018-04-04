@@ -11,8 +11,6 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', ]
-
 setup_requirements = ['pytest-runner', ]
 
 test_requirements = ['pytest', ]
@@ -33,12 +31,6 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     description="Scrap Imdb website to retrieve infdetail informmations from movies or tvshow",
-    entry_points={
-        'console_scripts': [
-            'scrapimdb=scrapimdb.cli:main',
-        ],
-    },
-    install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
