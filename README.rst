@@ -3,8 +3,8 @@ scrapimdb
 =========
 
 
-.. image:: https://img.shields.io/pypi/v/scrapimdb.svg
-        :target: https://pypi.python.org/pypi/scrapimdb
+.. image:: https://img.shields.io/pypi/v/scrap-imdb.svg
+        :target: https://pypi.python.org/pypi/scrap-imdb
 
 .. image:: https://img.shields.io/travis/dsteinberger/scrapimdb.svg
         :target: https://travis-ci.org/dsteinberger/scrapimdb
@@ -23,7 +23,7 @@ Install
 
 .. code-block:: shell
 
-    pip install scrapimdb
+    pip install scrap-imdb
 
 
 Usages
