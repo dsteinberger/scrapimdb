@@ -35,7 +35,7 @@ setup(
     long_description=readme + '\n\n' + history,
     include_package_data=True,
     keywords='scrapimdb',
-    name='scrapimdb',
+    name='scrap-imdb',
     packages=find_packages(include=['scrapimdb']),
     setup_requires=setup_requirements,
     test_suite='tests',
