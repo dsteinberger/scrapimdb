@@ -11,6 +11,7 @@ def spider():
 def test_imdb_rating(spider):
     float(spider.get_rating())
 
+
 # Not working only on travis !?
 # def test_imdb_title(spider):
 #     assert "The Terminator" == spider.get_original_title()
@@ -18,3 +19,8 @@ def test_imdb_rating(spider):
 
 def test_imdb_year(spider):
     assert "1984" == spider.get_year()
+
+
+def test_imdb_link(spider):
+    assert "http://www.imdb.com/title/tt0088247/?ref_=fn_al_tt_1" == \
+        spider.get_link()

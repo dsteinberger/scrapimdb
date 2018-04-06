@@ -2,6 +2,12 @@
 History
 =======
 
+0.1.1 (unreleased)
+------------------
+
+* Add get_link api method from spider imdb.
+
+
 0.1.0 (2018-04-04)
 ------------------
 

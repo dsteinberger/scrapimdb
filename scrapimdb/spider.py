@@ -16,28 +16,32 @@ class ImdbSpider(object):
 
     def __init__(self, title, type="all"):
         self.title = title
-        search_type_path = self._get_search_path(type)
+        search_type_path = TYPE_SEARCH.get(type) or TYPE_SEARCH["all"]
         self.search_url = u"{}/find?s={}&q={}".format(self.domain,
                                                       search_type_path,
                                                       self.title)
         self.link_detail = self._scrap_link_detail()
-        if not self.link_detail:
-            raise Exception()
-        page = requests.get(self.link_detail)
-        self.tree = html.fromstring(page.content)
-
-    def _get_search_path(self, type):
-        return TYPE_SEARCH.get(type) or TYPE_SEARCH["all"]
+        self._htmltree_link_page()
 
     def _scrap_link_detail(self):
         page = requests.get(self.search_url)
         tree = html.fromstring(page.content)
         try:
+            # Get the first url result from imdb search
             detail_path = tree.xpath(
                 "//td[@class='result_text']/a")[0].items()[0][1]
             return u"{}{}".format(self.domain, detail_path)
         except IndexError:
             raise Exception("No details found from: {}".format(self.title))
+
+    def _htmltree_link_page(self):
+        if not self.link_detail:
+            raise Exception()
+        page = requests.get(self.link_detail)
+        self.tree = html.fromstring(page.content)
+
+    def get_link(self):
+        return self.link_detail
 
     def get_rating(self):
         try:
