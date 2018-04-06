@@ -64,7 +64,12 @@ coverage: ## check code coverage quickly with the default Python
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
-release: dist ## package and upload a release
+release: ## set a tag
+	bumpversion patch
+	git push
+	git push --tags
+
+upload: dist ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
