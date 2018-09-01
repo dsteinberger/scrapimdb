@@ -46,7 +46,7 @@ class ImdbSpider(object):
     def get_rating(self):
         try:
             return self.tree.xpath(
-                "//span[@itemprop='ratingValue']")[0].text.strip()
+                "//div[@class='ratingValue']/strong[@title]/span")[0].text.strip()
         except IndexError:
             raise Exception(
                 "No rating found from: {}".format(self.title))
