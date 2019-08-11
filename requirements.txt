@@ -1,2 +1,2 @@
-lxml
+lxml==4.4.1
 requests
