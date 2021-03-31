@@ -6,7 +6,7 @@ flake8==3.5.0
 tox==3.0.0
 coverage==4.5.1
 twine==1.11.0
-lxml==4.2.1
+lxml==4.6.3
 
 pytest==3.5.0
 pytest-runner==4.2
