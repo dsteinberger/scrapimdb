@@ -20,12 +20,21 @@ class ImdbSpider(object):
         self.search_url = u"{}/find?s={}&q={}".format(self.domain,
                                                       search_type_path,
                                                       self.title)
-        self.link_detail = self._scrap_link_detail()
-        self._htmltree_link_page()
+        self._link_detail = self._scrap_link_detail()
+        self.tree_detail = self._extract_page_content(self._link_detail)
+
+    def get_link(self):
+        return self._link_detail
+
+    @staticmethod
+    def _extract_page_content(link):
+        if not link:
+            raise Exception()
+        page = requests.get(link)
+        return html.fromstring(page.content)
 
     def _scrap_link_detail(self):
-        page = requests.get(self.search_url)
-        tree = html.fromstring(page.content)
+        tree = self._extract_page_content(self.search_url)
         try:
             # Get the first url result from imdb search
             detail_path = tree.xpath(
@@ -34,19 +43,11 @@ class ImdbSpider(object):
         except IndexError:
             raise Exception("No details found from: {}".format(self.title))
 
-    def _htmltree_link_page(self):
-        if not self.link_detail:
-            raise Exception()
-        page = requests.get(self.link_detail)
-        self.tree = html.fromstring(page.content)
-
-    def get_link(self):
-        return self.link_detail
-
     def get_rating(self):
         try:
-            return self.tree.xpath(
-                "//div[@class='ratingValue']/strong[@title]/span")[0].text.strip()
+            return self.tree_detail.xpath(
+                "//span[contains(@class, "
+                "'AggregateRatingButton__RatingScore')]")[0].text.strip()
         except IndexError:
             raise Exception(
                 "No rating found from: {}".format(self.title))
@@ -54,16 +55,21 @@ class ImdbSpider(object):
     def get_original_title(self):
         # Retrieve the original title
         try:
-            return self.tree.xpath(
-                "//div[@class='originalTitle']")[0].text.strip()
+            orginal_title = self.tree_detail.xpath(
+                "//div[contains(@class, "
+                "'OriginalTitle__OriginalTitleText')]")[0].text.strip()
         except IndexError:
             raise Exception(
                 "No original title found from: {}".format(self.title))
+        return orginal_title.split('Original title: ')[1].strip()
 
     def get_year(self):
         # Retrieve the original title
         try:
-            return self.tree.xpath("//span[@id='titleYear']/a")[0].text.strip()
+            return self.tree_detail.xpath(
+                "//ul[contains(@class, "
+                "'TitleBlockMetaData__MetaDataList')]"
+                "/li[@class='ipc-inline-list__item']/a")[0].text.strip()
         except IndexError:
             raise Exception(
                 "No year found from: {}".format(self.title))
