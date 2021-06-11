@@ -7,6 +7,7 @@ History
 ------------------
 
 * Fix rating css selector
+* Adapt for new site imdb
 
 
 0.1.0 (2018-04-06)
