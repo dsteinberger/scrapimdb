@@ -5,7 +5,7 @@ watchdog==2.1.7
 flake8==3.5.0
 tox==3.0.0
 coverage==4.5.1
-twine
+twine==3.8.0
 lxml
 ipdb==0.13.9
 
