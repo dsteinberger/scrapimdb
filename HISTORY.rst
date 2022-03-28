@@ -3,7 +3,19 @@ History
 =======
 
 
-0.1.1 (unreleased)
+0.2.0 (unreleased)
+------------------
+
+* Fix new website of imdb (dom changing)
+
+
+0.1.2 (2021-06-11)
+------------------
+
+* Adapt scrapimdb for the new site imdb and remove python 2 support
+
+
+0.1.1 (2019-09-01)
 ------------------
 
 * Fix rating css selector
