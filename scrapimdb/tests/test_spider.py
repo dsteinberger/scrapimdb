@@ -12,9 +12,9 @@ def test_imdb_rating(spider):
     float(spider.get_rating())
 
 
-# Not working only on travis !?
-# def test_imdb_title(spider):
-#    assert "The Terminator" == spider.get_original_title()
+# Not working on travis !?
+#def test_imdb_title(spider):
+#   assert "The Terminator" == spider.get_original_title()
 
 
 def test_imdb_year(spider):

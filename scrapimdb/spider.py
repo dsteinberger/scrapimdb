@@ -46,8 +46,8 @@ class ImdbSpider(object):
     def get_rating(self):
         try:
             return self.tree_detail.xpath(
-                "//span[contains(@class, "
-                "'AggregateRatingButton__RatingScore')]")[0].text.strip()
+                "///div[contains(@data-testid, 'hero-rating-bar__aggregate-rating__score')]"
+                "/span")[0].text.strip()
         except IndexError:
             raise Exception(
                 "No rating found from: {}".format(self.title))
@@ -56,8 +56,8 @@ class ImdbSpider(object):
         # Retrieve the original title
         try:
             orginal_title = self.tree_detail.xpath(
-                "//div[contains(@class, "
-                "'OriginalTitle__OriginalTitleText')]")[0].text.strip()
+                "//div[contains(@data-testid, "
+                "'hero-title-block__original-title')]")[0].text.strip()
         except IndexError:
             raise Exception(
                 "No original title found from: {}".format(self.title))
@@ -67,8 +67,8 @@ class ImdbSpider(object):
         # Retrieve the original title
         try:
             return self.tree_detail.xpath(
-                "//ul[contains(@class, "
-                "'TitleBlockMetaData__MetaDataList')]"
+                "//ul[contains(@data-testid, "
+                "'hero-title-block__metadata')]"
                 "/li[@class='ipc-inline-list__item']/a")[0].text.strip()
         except IndexError:
             raise Exception(
