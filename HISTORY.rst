@@ -3,7 +3,7 @@ History
 =======
 
 
-0.1.3 (2022-03-28)
+0.1.4 (2022-03-28)
 ------------------
 
 * Fix new website of imdb (dom changing)
