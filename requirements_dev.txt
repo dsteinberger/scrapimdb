@@ -6,7 +6,7 @@ flake8==4.0.1
 tox==3.24.5
 coverage==6.3.2
 twine==4.0.0
-lxml==4.8.0
+lxml==4.9.0
 ipdb==0.13.9
 
 pytest==7.1.1
