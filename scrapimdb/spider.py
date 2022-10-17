@@ -37,8 +37,9 @@ class ImdbSpider(object):
         tree = self._extract_page_content(self.search_url)
         try:
             # Get the first url result from imdb search
+            #import ipdb; ipdb.set_trace()
             detail_path = tree.xpath(
-                "//td[@class='result_text']/a")[0].items()[0][1]
+                "//a[@class='ipc-metadata-list-summary-item__t']")[0].items()[-1][1]
             return u"{}{}".format(self.domain, detail_path)
         except IndexError:
             raise Exception("No details found from: {}".format(self.title))
