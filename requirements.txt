@@ -1,2 +1,2 @@
-lxml
-requests
+lxml==4.9.1
+requests==2.27.1
