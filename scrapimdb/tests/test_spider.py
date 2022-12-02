@@ -22,5 +22,5 @@ def test_imdb_year(spider):
 
 
 def test_imdb_link(spider):
-    assert "http://www.imdb.com/title/tt0088247/?ref_=fn_al_tt_0" == \
+    assert "http://www.imdb.com/title/tt0088247/?ref_=fn_al_tt_1" == \
         spider.get_link()

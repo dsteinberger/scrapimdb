@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import cloudscraper
 import requests
 from lxml import html
 
@@ -30,8 +31,9 @@ class ImdbSpider(object):
     def _extract_page_content(link):
         if not link:
             raise Exception()
-        page = requests.get(link)
-        return html.fromstring(page.content)
+        scraper = cloudscraper.create_scraper()
+        page = scraper.get(link)
+        return html.fromstring(page.text)
 
     def _scrap_link_detail(self):
         tree = self._extract_page_content(self.search_url)
