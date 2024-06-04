@@ -9,5 +9,5 @@ twine
 lxml
 ipdb
 
-pytest==6.2.5
+pytest==8.2.2
 
