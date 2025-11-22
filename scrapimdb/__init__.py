@@ -2,7 +2,7 @@
 
 __author__ = """David Steinberger"""
 __email__ = "david.steinberger@gmail.com"
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 
 from .spider import ImdbSpider
 
