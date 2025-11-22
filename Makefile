@@ -49,36 +49,45 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
-lint: ## check style with flake8
-	flake8 scrapimdb tests
+format: ## format code with black and isort
+	poetry run black scrapimdb
+	poetry run isort scrapimdb
+	poetry run ruff check --fix scrapimdb
+
+lint: ## check style with ruff (fast modern linter)
+	poetry run ruff check scrapimdb
+
+lint-all: ## check style with all linters (ruff, flake8, mypy)
+	poetry run ruff check scrapimdb
+	poetry run flake8 scrapimdb
+	poetry run mypy scrapimdb
 
 test: ## run tests quickly with the default Python
-	py.test -s
+	poetry run pytest -s
 
 test-all: ## run tests on every Python version with tox
-	tox
+	poetry run tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source scrapimdb -m pytest
-	coverage report -m
-	coverage html
+	poetry run coverage run --source scrapimdb -m pytest
+	poetry run coverage report -m
+	poetry run coverage html
 	$(BROWSER) htmlcov/index.html
 
 release: ## set a tag
-	bumpversion patch
+	poetry run bumpversion patch
 	git push
 	git push --tags
 
 upload: dist ## package and upload a release
-	twine upload dist/*
+	poetry publish
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	poetry build
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	poetry install --only main
 
-develop: ## install the develop packages
-	pip install -r requirements_dev.txt
+develop: ## install the package with dev dependencies
+	poetry install

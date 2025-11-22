@@ -21,9 +21,28 @@ Scrap Imdb website to retrieve detail informations from movies or tvshows
 Install
 -------
 
+For end users:
+
 .. code-block:: shell
 
     pip install scrap-imdb
+
+For development:
+
+.. code-block:: shell
+
+    # Clone the repository
+    git clone https://github.com/dsteinberger/scrapimdb.git
+    cd scrapimdb
+
+    # Install Poetry if not already installed
+    pip install poetry
+
+    # Install dependencies
+    poetry install
+
+    # Run tests
+    make test
 
 
 Usages

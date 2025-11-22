@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.imdb.com)",
+      "Bash(python debug_scraper.py:*)",
+      "Bash(poetry run python:*)",
+      "Bash(make test:*)",
+      "Bash(test:*)",
+      "Bash(poetry lock:*)",
+      "Bash(poetry install:*)",
+      "Bash(make format:*)",
+      "Bash(poetry show:*)",
+      "Bash(poetry update:*)",
+      "Bash(make lint:*)",
+      "Bash(poetry run coverage report:*)",
+      "Bash(git config:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
