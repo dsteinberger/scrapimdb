@@ -7,6 +7,14 @@ from unittest.mock import Mock, MagicMock
 from scrapimdb import ImdbSpider
 
 
+@pytest.fixture(autouse=True)
+def reset_shared_scraper():
+    """Reset the shared scraper before each test to ensure test isolation"""
+    ImdbSpider._shared_scraper = None
+    yield
+    ImdbSpider._shared_scraper = None
+
+
 @pytest.fixture
 def mock_search_response():
     """Mock HTML response for IMDB search page"""

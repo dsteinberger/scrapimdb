@@ -1,4 +1,5 @@
 import cloudscraper
+import requests
 from lxml import html
 
 TYPE_SEARCH = {"all": "all", "movie": "tt", "tvshow": "ep"}
@@ -6,6 +7,24 @@ TYPE_SEARCH = {"all": "all", "movie": "tt", "tvshow": "ep"}
 
 class ImdbSpider:
     domain = "http://www.imdb.com"
+
+    # Shared cloudscraper session for all instances to avoid file descriptor leaks
+    _shared_scraper = None
+
+    @classmethod
+    def get_scraper(cls):
+        """Get or create a shared cloudscraper session"""
+        if cls._shared_scraper is None:
+            cls._shared_scraper = cloudscraper.create_scraper()
+            # Limit connection pool to avoid too many open files
+            adapter = requests.adapters.HTTPAdapter(
+                pool_connections=5,
+                pool_maxsize=10,
+                max_retries=2
+            )
+            cls._shared_scraper.mount('http://', adapter)
+            cls._shared_scraper.mount('https://', adapter)
+        return cls._shared_scraper
 
     def __init__(self, title, type="all"):
         self.title = title
@@ -17,13 +36,15 @@ class ImdbSpider:
     def get_link(self):
         return self._link_detail
 
-    @staticmethod
-    def _extract_page_content(link):
+    @classmethod
+    def _extract_page_content(cls, link):
         if not link:
             raise Exception()
-        scraper = cloudscraper.create_scraper()
+        scraper = cls.get_scraper()
         page = scraper.get(link)
-        return html.fromstring(page.text)
+        content = page.text
+        page.close()  # Close response to free file descriptor
+        return html.fromstring(content)
 
     def _scrap_link_detail(self):
         tree = self._extract_page_content(self.search_url)
