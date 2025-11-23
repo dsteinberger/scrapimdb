@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "scrap-imdb"
-version = "0.1.7"
+version = "0.1.8"
 description = "Scrap Imdb website to retrieve detail informations from movies or tvshows"
 authors = ["David Steinberger <david.steinberger@gmail.com>"]
 license = "MIT"
