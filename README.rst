@@ -2,6 +2,12 @@
 scrapimdb
 =========
 
+.. warning::
+
+   **⚠️ OBSOLETE** — This project no longer works. IMDB now uses AWS WAF (Web Application Firewall)
+   with mandatory JavaScript challenges that cannot be bypassed by HTTP-based scrapers like cloudscraper.
+   Use `OMDB API <https://www.omdbapi.com/>`_ instead (see `scrapddl <https://github.com/dsteinberger/scrapddl>`_).
+
 
 .. image:: https://img.shields.io/pypi/v/scrap-imdb.svg
         :target: https://pypi.python.org/pypi/scrap-imdb
